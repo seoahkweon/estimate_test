@@ -316,14 +316,16 @@
       
       const message = `📋 *백내장 수술 견적 요청*\n\n👤 *기본 정보*\n• 이름: ${formData.name}\n• 연락처: ${formData.phone1}-${formData.phone2}-${formData.phone3}\n• 지역: ${location}\n• 연령대: ${formData.age}\n\n🏥 *수술 정보*\n• 희망 수술: ${surgeryInfo}\n• 실비보험: ${formData.hasInsurance ? '예' : '아니오'}\n\n💬 *추가 문의*\n${formData.additionalInfo || '없음'}`;
 
-      // 여기에 실제 Slack Webhook URL을 입력하세요
-      const SLACK_WEBHOOK_URL = 'YOUR_SLACK_WEBHOOK_URL_HERE';
+      const SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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';
       
       try {
-        // Webhook 방식 (CORS 이슈로 서버 필요할 수 있음)
-        // await fetch(SLACK_WEBHOOK_URL, { method: 'POST', body: JSON.stringify({ text: message }) });
+        await fetch(SLACK_WEBHOOK_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: JSON.stringify({ text: message })
+        });
         
-        console.log('전송할 메시지:', message);
         document.getElementById('successModal').classList.remove('hidden');
       } catch (error) {
         console.error('전송 실패:', error);
