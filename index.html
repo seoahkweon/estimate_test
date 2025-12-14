@@ -316,7 +316,7 @@
       
       const message = `📋 *백내장 수술 견적 요청*\n\n👤 *기본 정보*\n• 이름: ${formData.name}\n• 연락처: ${formData.phone1}-${formData.phone2}-${formData.phone3}\n• 지역: ${location}\n• 연령대: ${formData.age}\n\n🏥 *수술 정보*\n• 희망 수술: ${surgeryInfo}\n• 실비보험: ${formData.hasInsurance ? '예' : '아니오'}\n\n💬 *추가 문의*\n${formData.additionalInfo || '없음'}`;
 
-      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwFpr44-tirYRdhP7HKUZb1IyPqraUgBSsQ1lC7nEN3--UBfuW5RvWY7S8_9o5DzqAoCg/exec';
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxwoxiRG37_8xzlBMLxPdrhou_d3-RMvINjGLt3ilD_qUZxNE9dL9oE2qsp2a2Web4Z/exec';
       
       try {
         await fetch(GOOGLE_SCRIPT_URL, {
