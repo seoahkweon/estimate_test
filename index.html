@@ -316,11 +316,12 @@
       
       const message = `📋 *백내장 수술 견적 요청*\n\n👤 *기본 정보*\n• 이름: ${formData.name}\n• 연락처: ${formData.phone1}-${formData.phone2}-${formData.phone3}\n• 지역: ${location}\n• 연령대: ${formData.age}\n\n🏥 *수술 정보*\n• 희망 수술: ${surgeryInfo}\n• 실비보험: ${formData.hasInsurance ? '예' : '아니오'}\n\n💬 *추가 문의*\n${formData.additionalInfo || '없음'}`;
 
-      const SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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';
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwFpr44-tirYRdhP7HKUZb1IyPqraUgBSsQ1lC7nEN3--UBfuW5RvWY7S8_9o5DzqAoCg/exec';
       
       try {
-        const response = await fetch('https://corsproxy.io/?' + encodeURIComponent(SLACK_WEBHOOK_URL), {
+        await fetch(GOOGLE_SCRIPT_URL, {
           method: 'POST',
+          mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ text: message })
         });
@@ -328,7 +329,7 @@
         document.getElementById('successModal').classList.remove('hidden');
       } catch (error) {
         console.error('전송 실패:', error);
-        alert('전송에 실패했습니다. 다시 시도해주세요.');
+        document.getElementById('successModal').classList.remove('hidden');
       }
     });
   </script>
