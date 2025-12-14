@@ -319,10 +319,9 @@
       const SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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';
       
       try {
-        await fetch(SLACK_WEBHOOK_URL, {
+        const response = await fetch('https://corsproxy.io/?' + encodeURIComponent(SLACK_WEBHOOK_URL), {
           method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ text: message })
         });
         
