@@ -319,12 +319,9 @@
       const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxwoxiRG37_8xzlBMLxPdrhou_d3-RMvINjGLt3ilD_qUZxNE9dL9oE2qsp2a2Web4Z/exec';
       
       try {
-        await fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ text: message })
-        });
+        const url = GOOGLE_SCRIPT_URL + '?text=' + encodeURIComponent(message);
+        
+        await fetch(url, { mode: 'no-cors' });
         
         document.getElementById('successModal').classList.remove('hidden');
       } catch (error) {
